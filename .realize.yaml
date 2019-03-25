@@ -51,4 +51,3 @@ schema:
     ignored_paths:
     - .git
     - .realize
-    - vendor

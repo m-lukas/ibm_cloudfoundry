@@ -42,7 +42,7 @@ func main() {
 	handler := cors.Handler(r)
 
 	server := &http.Server{
-		Addr:         "0.0.0.0:5000",
+		Addr:         "0.0.0.0:8080",
 		WriteTimeout: time.Second * 15,
 		ReadTimeout:  time.Second * 15,
 		IdleTimeout:  time.Second * 60,

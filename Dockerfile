@@ -1,6 +1,6 @@
 FROM golang:latest
 
-WORKDIR $GOPATH/src/app
+WORKDIR /go/src/app
 COPY . .
 
 RUN go get -d -v ./...
@@ -12,6 +12,6 @@ ENV DB_NAME jofcwcfq
 ENV DB_USER jofcwcfq
 ENV DB_PASS h7ufiWtJ-_diOHpyupzY8dO48Y8aV2vT
 
-EXPOSE 5000
+EXPOSE 8080
 
 CMD ["app"]
