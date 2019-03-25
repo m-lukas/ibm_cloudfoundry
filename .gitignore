@@ -1,4 +1,7 @@
 .r.errors.log
 .r.logs.log
 .r.outputs.log
+manifest.yml
+Dockerfile
+docker-compose.yml
 /vendor
