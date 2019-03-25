@@ -11,3 +11,8 @@ type Content struct {
 	Timer     int64
 	QuoteText string
 }
+
+//The Health object is used in the CF Health Check.
+type Health struct {
+	Status string `json:"status"`
+}

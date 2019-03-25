@@ -1,3 +1,4 @@
 .r.errors.log
 .r.logs.log
 .r.outputs.log
+/vendor

@@ -19,6 +19,7 @@ var initTime time.Time
 const apiPath = "/api"
 
 func init() {
+	//prepare html rendering
 	options := renderer.Options{
 		ParseGlobPattern: "./res/*.html",
 	}
@@ -26,27 +27,30 @@ func init() {
 }
 
 func main() {
-	initTime = time.Now()
+	initTime = time.Now() //get initial timestamp
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", getMain)
+	r.HandleFunc("/health", healthCheck).Methods("GET")
 	r.HandleFunc(apiPath+"/quote", postQuote).Methods("POST")
 
+	//cors configuration
 	cors := cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},
 		AllowCredentials: true,
 		AllowedHeaders:   []string{"Content-Type", "*"},
-		Debug:            true,
+		Debug:            false,
 	})
 
 	handler := cors.Handler(r)
 
+	//coonfigurate server
 	server := &http.Server{
 		Addr:         "0.0.0.0:8080",
 		WriteTimeout: time.Second * 15,
 		ReadTimeout:  time.Second * 15,
 		IdleTimeout:  time.Second * 60,
-		Handler:      handler,
+		Handler:      handler, //pass mux handler
 	}
 	log.Println("Configured server")
 
@@ -57,7 +61,7 @@ func main() {
 	}()
 	log.Println("Started server")
 
-	c := make(chan os.Signal, 1)
+	c := make(chan os.Signal, 1) //gracefully stop on CTRL + C
 	signal.Notify(c, os.Interrupt)
 
 	// Block until we receive our signal.

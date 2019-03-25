@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+//establish database connection
 func initDB() *sql.DB {
 	//get database variables
 	DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS := getDBConfig()
@@ -28,6 +29,7 @@ func initDB() *sql.DB {
 	return db
 }
 
+//load db env variables
 func getDBConfig() (DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS string) {
 	//retrieve enviromental variables
 	DB_HOST = os.Getenv("DB_HOST")
@@ -43,6 +45,7 @@ func insertQuote(quote string) (*Quote, error) {
 	db := initDB()
 	defer db.Close()
 
+	//replacements to avoid string query errors
 	quote = strings.Replace(quote, `'`, `"`, -1)
 	quote = strings.Replace(quote, "`", `'`, -1)
 

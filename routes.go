@@ -1,11 +1,13 @@
 package main
 
 import (
+	"encoding/json"
 	"math/rand"
 	"net/http"
 	"time"
 )
 
+// - Route: / -> Serve HTML
 func getMain(w http.ResponseWriter, r *http.Request) {
 
 	var quote string
@@ -27,6 +29,7 @@ func getMain(w http.ResponseWriter, r *http.Request) {
 	render.HTML(w, http.StatusOK, "main", content)
 }
 
+// - Route: /api/quote -> save new quote to db
 func postQuote(w http.ResponseWriter, r *http.Request) {
 	quote := r.FormValue("quote")
 	if quote != "" {
@@ -38,5 +41,11 @@ func postQuote(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	http.Redirect(w, r, "http://0.0.0.0:5000/", 301)
+	http.Redirect(w, r, "http://ibmcloudfoundryapp.eu-gb.mybluemix.net/", 301)
+}
+
+// - Route: /health -> Health Check for Cloud
+func healthCheck(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(Health{"UP"})
 }

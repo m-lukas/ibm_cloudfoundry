@@ -1,6 +1,6 @@
 FROM golang:latest
 
-WORKDIR /go/src/app
+WORKDIR /go/src/ibmcloudfoundry
 COPY . .
 
 RUN go get -d -v ./...
@@ -14,4 +14,4 @@ ENV DB_PASS h7ufiWtJ-_diOHpyupzY8dO48Y8aV2vT
 
 EXPOSE 8080
 
-CMD ["app"]
+CMD ["ibmcloudfoundry"]
