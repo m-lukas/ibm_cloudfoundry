@@ -1,0 +1,54 @@
+settings:
+  files:
+    outputs:
+      status: true
+      path: ""
+      name: .r.outputs.log
+    logs:
+      status: true
+      path: ""
+      name: .r.logs.log
+    errors:
+      status: true
+      path: ""
+      name: .r.errors.log
+  legacy:
+    force: false
+    interval: 0s
+server:
+  status: true
+  port: 9000
+  host: localhost
+schema:
+- name: ibm-cloudfoundry
+  path: /Users/m-lukas/Documents/Projects/go/src/github.com/m-lukas/ibm-cloudfoundry
+  env:
+    DB_HOST: manny.db.elephantsql.com
+    DB_PORT: 5432
+    DB_NAME: jofcwcfq
+    DB_USER: jofcwcfq
+    DB_PASS: h7ufiWtJ-_diOHpyupzY8dO48Y8aV2vT
+  commands:
+    clean:
+      status: true
+    fmt:
+      status: true
+    test:
+      status: true
+    generate:
+      status: true
+    install:
+      status: true
+    build:
+      status: true
+    run:
+      status: true
+  watcher:
+    extensions:
+    - go
+    paths:
+    - /
+    ignored_paths:
+    - .git
+    - .realize
+    - vendor
