@@ -38,5 +38,5 @@ func postQuote(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	http.Redirect(w, r, "http://localhost:5000/", 301)
+	http.Redirect(w, r, "http://0.0.0.0:5000/", 301)
 }
